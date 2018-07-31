@@ -1,10 +1,7 @@
 // Listen for submit
-document.getElementById('submit-btn').addEventListener('click', function (e) {
-
-  document.getElementById("results").style.display = "none";
-
+document.getElementById('loan-form').addEventListener('submit', function (e) {
+ 
   document.getElementById("loader").style.display = "block";
-
   setTimeout(calculateResults, 1500);
 
   e.preventDefault();
@@ -34,9 +31,11 @@ function calculateResults(e) {
     totalPayment.value = (monthly * calculatedPayments).toFixed(2);
     totalInterest.value = ((monthly * calculatedPayments) - principal).toFixed(2);
 
+    
     document.getElementById("results").style.display = "block";
     document.getElementById("loader").style.display = "none";
   } else {
+    
     showError();
   }
 }
@@ -44,8 +43,5 @@ function calculateResults(e) {
 
 function showError() {
   document.getElementById("loader").style.display = "none";
-  const x = document.getElementById('submit-btn');
-  x.setAttribute("data-toggle", "modal");
-  x.setAttribute("data-target", "#myModal");
-    document.getElementById("results").style.display = "none";
+  $('#myModal').modal('show');
 }
